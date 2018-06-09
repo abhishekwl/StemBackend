@@ -1,0 +1,34 @@
+{
+  "name": "stemapinew",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "console.log(\"Working\");"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/abhishekwl/StemBackend.git"
+  },
+  "keywords": [
+    "node",
+    "mongoose",
+    "mongodb",
+    "express",
+    "rest",
+    "api",
+    "stem"
+  ],
+  "author": "abhishekwl",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/abhishekwl/StemBackend/issues"
+  },
+  "homepage": "https://github.com/abhishekwl/StemBackend#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3",
+    "helmet": "^3.12.1",
+    "mongoose": "^5.1.4"
+  }
+}
