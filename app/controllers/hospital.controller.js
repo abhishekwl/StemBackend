@@ -21,7 +21,7 @@ exports.create = (req,res)=>{
 };
 
 exports.findOne = (req,res)=>{
-    Hospital.findOne({ uid: req.params.hospitalId }, (err,data)=>sendData(err,data));
+    Hospital.findOne({ uid: req.params.hospitalId }, (err,data)=>sendData(err,data,res));
 };
 
 function sendData(err,data,res) {
