@@ -13,6 +13,9 @@ app.use(helmet());
 app.get("/", (req,res)=>{
     res.status(200).json({ message: "All requests should be directed to /API endpoint." });
 });
+
+
+require("./app/routes/hospital.routes.js")(app);
 app.listen(config.port, "0.0.0.0", ()=>{
     connectToDatabase();
     console.log("\n[SERVER] Listening on port "+config.port);
