@@ -1,4 +1,5 @@
 const Hospital = require("../models/hospital.model.js");
+const Test = require("../models/test.model.js");
 
 exports.create = (req,res)=>{
     if(req.body.uid && req.body.name && req.body.latitude && req.body.longitude && req.body.city) {
@@ -10,7 +11,7 @@ exports.create = (req,res)=>{
                     name: req.body.name,
                     latitude: req.body.latitude,
                     longitude: req.body.longitude,
-                    city: req.body.city,
+                    city: req.body.city.toLowerCase(),
                     image: req.body.image? req.body.image : ""
                 });
                 hospital.save((err,data)=>sendData(err,data,req,res));
@@ -20,7 +21,19 @@ exports.create = (req,res)=>{
 };
 
 exports.findOne = (req,res)=>{
-    Hospital.findOne({ uid: req.params.hospitalId }, (err,data)=>sendData(err,data,res));
+    Hospital.findOne({ uid: req.params.hospitalId }, (err,data)=>sendData(err,data,req,res));
+};
+
+exports.update = (req,res)=>{
+    if(req.body) {
+        Hospital.findOne({ uid: req.params.hospitalId }, (err,hospital)=>{
+            console.log(JSON.stringify(hospital));
+        });
+    } else sendData("Missing PUT body params", null, req, res);
+};
+
+exports.delete = (req,res)=>{
+    Hospital.deleteOne({ uid: req.params.hospitalId }, (err,data)=>sendData(err,data,req,res));
 };
 
 function sendData(err,data,req,res) {

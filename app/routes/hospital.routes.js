@@ -4,6 +4,6 @@ module.exports = (app)=>{
 
     app.post(apiUrl, hospitals.create);
     app.get(apiUrl+"/:hospitalId", hospitals.findOne);
-    //app.put(apiUrl+"/:hospitalId", hospitals.update);
-    //app.delete(apiUrl+"/:hospitalId", hospitals.delete);
+    app.put(apiUrl+"/:hospitalId", hospitals.update);
+    app.delete(apiUrl+"/:hospitalId", hospitals.delete);
 };

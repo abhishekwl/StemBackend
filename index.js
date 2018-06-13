@@ -2,7 +2,6 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const helmet = require("helmet");
-const firebase = require("firebase");
 //LOCAL
 const config = require("./config");
 const app = express();
@@ -16,6 +15,8 @@ app.get("/", (req,res)=>{
 
 
 require("./app/routes/hospital.routes.js")(app);
+require("./app/routes/test.routes.js")(app);
+require("./app/routes/user.routes.js")(app);
 app.listen(config.port, "0.0.0.0", ()=>{
     connectToDatabase();
     console.log("\n[SERVER] Listening on port "+config.port);
@@ -24,8 +25,6 @@ app.listen(config.port, "0.0.0.0", ()=>{
 function connectToDatabase() {
     mongoose.Promise = global.Promise;
     mongoose.connect(config.dbUri).then(()=>{
-        firebase.initializeApp(config.firebaseConfig);
-        console.log("[FIREBASE] "+(firebase.apps.length==1?"Hook to Firebase success":"ERROR CONNECTING TO FIREBASE"));
         console.log("[DB] Hook to DB success\n");
     }).catch(err=>{
         console.log("[!ERROR-DB] "+err);

@@ -11,7 +11,7 @@ const userSchema = mongoose.Schema(
         image: { type: String, required: false, default: "" },
         contact: { type: String, required: true, default: "" },
         additional: { type: String, required: false, default: "" },
-        history: { type: [Test], required: false, default: [] }
+        history: { type: [Test.schema], required: false, default: [] }
     },
     {
         timestamps: true

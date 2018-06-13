@@ -1,6 +1,6 @@
 module.exports = {
     apiUri: "/api/v1",
-    dbUri: "mongodb+srv://abhishekwl:abcd1234@stem-cluster-u8esg.mongodb.net/test?retryWrites=true",
+    dbUri: "mongodb+srv://abhishekwl:abcd1234@stem-cluster-u8esg.mongodb.net/test?retryWrites=false",
     port: process.env.PORT || 8000,
     firebaseConfig: {
         apiKey: "AIzaSyDG7gSPLRVSbnOiJ27_fKlcafY3xbN5Zmo",
