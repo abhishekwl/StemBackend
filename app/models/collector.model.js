@@ -9,9 +9,8 @@ const collectorSchema = mongoose.Schema(
         rating: { type: Number, required: false, default: 3 },
         latitude: { type: Number, required: true },
         longitude: { type: Number, required: true },
-        status: { type: String, required: false, default: "FREE" },
+        status: { type: String, required: false, default: "IDLE" }, //IDLE || BUSY
         image: { type: String, required: false, default: "" },
-        orderId: { type: String, required: false, default: "" }
     },
     {
         timestamps: true
