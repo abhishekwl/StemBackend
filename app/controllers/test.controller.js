@@ -20,9 +20,7 @@ exports.create = (req,res)=>{
 exports.findAll = (req,res)=>{
     if(req.query.uid && req.query.test) {
         User.findOne({ uid: req.query.uid }, (err,data)=>{
-            if(data && !err) {
-                Test.find({ $text: { $search: req.query.test }, "hospital.city": req.query.city.toLowerCase() }, (err,data)=>sendData(err,data,req,res));
-            }
+            if(data && !err) Test.find({ $text: { $search: req.query.test }, "hospital.city": req.query.city.toLowerCase() }, (err,data)=>sendData(err,data,req,res));
             else sendData("Invalid UID", null, req, res);
         });
     } else sendData("Missing Query Params CITY or UID or Test", null, req, res);

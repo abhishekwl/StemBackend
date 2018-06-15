@@ -3,8 +3,8 @@ const Test = require("../models/test.model.js");
 
 exports.create = (req,res)=>{
     if(req.body.uid && req.body.name && req.body.latitude && req.body.longitude && req.body.city) {
-        Hospital.find({ uid: req.body.uid }, (err,data)=>{
-            if(data.length) sendData("UID already exists, not creating a new entry.", null, req, res);
+        Hospital.findOne({ uid: req.body.uid }, (err,data)=>{
+            if(data && !err) sendData("UID already exists, not creating a new Hospital.", null, req, res);
             else {
                 const hospital = new Hospital({
                     uid: req.body.uid,
@@ -16,7 +16,7 @@ exports.create = (req,res)=>{
                 });
                 hospital.save((err,data)=>sendData(err,data,req,res));
             }
-        }).limit(1);
+        });
     } else sendData("Missing POST body params.", null, req, res);
 };
 
@@ -26,14 +26,18 @@ exports.findOne = (req,res)=>{
 
 exports.update = (req,res)=>{
     if(req.body) {
-        Hospital.findOne({ uid: req.params.hospitalId }, (err,hospital)=>{
-            console.log(JSON.stringify(hospital));
+        Hospital.findOneAndUpdate({ uid: req.params.hospitalId }, { $set: req.body }, { new: true }, (err,data)=>{
+            if(data && !err) Test.update({ "hospital.uid": req.params.hospitalId }, { $set: { hospital: data } }, { new: true }, ()=>sendData(err,data,req,res));
+            else sendData("Hospital with provided UID does not exist", null, req, res);
         });
     } else sendData("Missing PUT body params", null, req, res);
 };
 
 exports.delete = (req,res)=>{
-    Hospital.deleteOne({ uid: req.params.hospitalId }, (err,data)=>sendData(err,data,req,res));
+    Hospital.deleteOne({ uid: req.params.hospitalId }, (err,data)=>{
+        if(data && !err) Test.deleteMany({ "hospital.uid": req.params.hospitalId }, ()=>sendData(err,data,req,res));
+        else sendData("Hospital with provided UID does not exist", null, req, res);
+    });
 };
 
 function sendData(err,data,req,res) {

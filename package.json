@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "console.log(\"Working\");"
+    "test": "console.log(\"Working\");",
+    "start": "nodemon index.js"
   },
   "repository": {
     "type": "git",
@@ -31,5 +32,8 @@
     "firebase": "^5.0.4",
     "helmet": "^3.12.1",
     "mongoose": "^5.1.4"
+  },
+  "devDependencies": {
+    "nodemon": "^1.17.5"
   }
 }

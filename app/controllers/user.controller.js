@@ -21,9 +21,8 @@ exports.findOne = (req,res)=>{
 };
 
 exports.update = (req,res)=>{
-    if(req.body) {
-        User.findOneAndUpdate({ uid: req.params.uid }, { $set: req.body }, { new: true }, (err,data)=>sendData(err,data,req,res));
-    } else sendData("Missing PUT Body params", null, req, res);
+    if(req.body) User.findOneAndUpdate({ uid: req.params.uid }, { $set: req.body }, { new: true }, (err,data)=>sendData(err,data,req,res));
+    else sendData("Missing PUT Body params", null, req, res);
 };
 
 exports.delete = (req,res)=>{
