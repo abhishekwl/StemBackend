@@ -1,7 +1,7 @@
 const User = require("../models/user.model.js");
 
 exports.create = (req,res)=>{
-    if(req.body.uid && req.body.name && req.body.age && req.body.blood && req.body.gender && req.body.contact) {
+    if(req.body.uid && req.body.name && req.body.age && req.body.blood && req.body.gender && req.body.contact && req.body.email) {
         const user = new User({
             uid: req.body.uid,
             name: req.body.name,
@@ -9,6 +9,7 @@ exports.create = (req,res)=>{
             blood: req.body.blood,
             gender: req.body.gender.toString().toLowerCase()==="male"? true: false,
             contact: req.body.contact,
+            email: req.body.email,
             image: req.body.image? req.body.image : "",
             additional: req.body.additional? req.body.additional : ""
         });

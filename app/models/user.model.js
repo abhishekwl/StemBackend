@@ -10,6 +10,7 @@ const userSchema = mongoose.Schema(
         gender: { type: Boolean, required: true, default: true },
         image: { type: String, required: false, default: "" },
         contact: { type: String, required: true, default: "" },
+        email: { type: String, required: true, default: "" },
         additional: { type: String, required: false, default: "" },
         history: { type: [Test.schema], required: false, default: [] }
     },
