@@ -17,8 +17,16 @@ exports.create = (req,res)=>{
     } else sendData("Missing POST body params.", null, req, res);
 };
 
+exports.findPopular = (req,res)=>{
+    if(req.query.uid && req.query.city) {
+        User.findOne({ uid: req.query.uid }, (err,data)=>{
+            if(data && !err) Test.find({ "hospital.city": req.query.city.toLowerCase() }).sort({ popularity: "desc" }).limit(10).exec((err,data)=>sendData(err,data,req,res))
+        });
+    } else sendData("Missing Query Params CITY or UID or Test", null, req, res);
+};
+
 exports.findAll = (req,res)=>{
-    if(req.query.uid && req.query.test) {
+    if(req.query.uid && req.query.test && req.query.city) {
         User.findOne({ uid: req.query.uid }, (err,data)=>{
             if(data && !err) Test.find({ $text: { $search: req.query.test }, "hospital.city": req.query.city.toLowerCase() }, (err,data)=>sendData(err,data,req,res));
             else sendData("Invalid UID", null, req, res);
