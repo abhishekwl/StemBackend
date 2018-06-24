@@ -8,7 +8,9 @@ const orderSchema = mongoose.Schema(
         status: { type: String, required: true, default: "WAITING" },   //WAITING || ENROUTE || ACTIVE || COMPLETE
         user: { type: User.schema, required: true },
         tests: { type: [Test.schema], required: true },
-        collector: { type: Collector.schema, required: false }
+        collector: { type: Collector.schema, required: false },
+        latitude: { type: Number, required: true },
+        longitude: { type: Number, required: true }
     },
     {
         timestamps: true
