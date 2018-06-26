@@ -7,7 +7,7 @@ exports.create = (req,res)=>{
             name: req.body.name,
             age: req.body.age,
             blood: req.body.blood,
-            gender: req.body.gender.toString().toLowerCase()==="male"? true: false,
+            gender: req.body.gender,
             contact: req.body.contact,
             email: req.body.email,
             image: req.body.image? req.body.image : "",
